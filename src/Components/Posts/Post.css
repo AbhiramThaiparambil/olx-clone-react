@@ -23,6 +23,7 @@
 
 .recommendations .cards {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .moreView .cards {
@@ -32,7 +33,9 @@
 }
 
 .card {
-  margin-right: 15px;
+  margin: 15px;
+
+margin-left: 45px;
   padding: 13px;
   max-width: 222px;
   width: 222px;

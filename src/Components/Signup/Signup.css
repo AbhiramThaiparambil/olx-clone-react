@@ -1,6 +1,7 @@
 .signupParentDiv {
+
     border: 1px solid black;
-    width: max-content;
+    width: 500px;
     padding: 10px;
     position: absolute;
     top: 50%;
@@ -10,6 +11,8 @@
   }
   
   .signupParentDiv .input {
+    width: 488px;
+
     border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
@@ -35,4 +38,21 @@
     justify-content: center;
     cursor: pointer;
   }
+
+  .error-message {
+    color: #ff4d4f;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 4px;
+    padding: 2px 8px;
+    background-color: #fff1f0;
+    border-radius: 4px;
+    border: 1px solid #ffa39e;
+    animation: shake 0.4s linear;
+  }
   
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }

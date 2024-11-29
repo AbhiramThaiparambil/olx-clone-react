@@ -1,0 +1,37 @@
+
+
+  
+
+ .roodDiv{
+    display: flex;
+    flex-wrap: wrap;
+ } 
+ .cardShimmer{
+    margin: 15px;
+    margin-left: 45px;
+    padding: 13px;
+    max-width: 222px;
+    width: 222px;
+    height: 270px;
+    display: inline-block;
+    cursor: pointer;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  .cardShimmerW{
+    margin: 15px;
+    margin-left: 45px;
+    padding: 13px;
+    max-width: 222px;
+    width: 222px;
+    height: 270px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #80808098;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+ 
