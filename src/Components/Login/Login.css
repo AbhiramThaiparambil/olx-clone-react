@@ -4,12 +4,14 @@
     padding: 10px;
     position: absolute;
     top: 50%;
+    width: 400px;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 6px;
   }
   
   .loginParentDiv .input {
+    width: 100%;
     border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
@@ -35,4 +37,8 @@
     justify-content: center;
     cursor: pointer;
   }
-  
+  .LogoLogin{
+      width: 200px;
+      height: 200px;
+      margin-left: 80px;
+  }

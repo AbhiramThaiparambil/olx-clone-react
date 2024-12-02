@@ -46,7 +46,7 @@ function View() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  },[]);
  
   {if(product.length===0)return <ShimmerUI></ShimmerUI>}
   return (
@@ -54,7 +54,11 @@ function View() {
       {product ? (
         <>
           <div className="imageShowDiv">
-            <img src={product.imageUrl || "../../../Images/R15V3.jpg"} alt="Product" />
+          <img 
+  src={product?.imageUrl} 
+  alt="Product" 
+  className="w-full max-w-[600px] mx-auto block object-cover"
+/>
           </div>
           <div className="rightSection">
             <div className="productDetails">

@@ -8,13 +8,17 @@ import Search from "../../assets/Search";
 import Arrow from "../../assets/Arrow";
 import SellButton from "../../assets/SellButton";
 import SellButtonPlus from "../../assets/SellButtonPlus";
-import Login from "../Login/Login";
-import { useNavigate } from "react-router-dom";
 
-function Header() {
+import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../store/searchContext";
+function Header(prop) {
   const navigate = useNavigate();
   const { authUser } = useContext(UserContext);
   const { auth } = useContext(FirebaseContext);
+  const { setsearch } = useContext(SearchContext)
+
+
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -23,7 +27,7 @@ function Header() {
         </div>
         <div className="placeSearch">
           <Search></Search>
-          <input type="text" />
+          <input value={'Sulthan Bathery, Wayanad'} type="text" />
           <Arrow></Arrow>
         </div>
         <div className="productSearch">
@@ -31,6 +35,7 @@ function Header() {
             <input
               type="text"
               placeholder="Find car,mobile phone and more..."
+              onChange={(e) => setsearch(e.target.value)}
             />
           </div>
           <div className="searchAction">

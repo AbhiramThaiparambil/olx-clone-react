@@ -3,7 +3,7 @@ import {FirebaseContext} from "../../store/firebaseContext";
 import {doc,setDoc} from 'firebase/firestore'
 import {  createUserWithEmailAndPassword ,updateProfile } from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 import {
   EmailRegex,
   passwordRegex,
@@ -154,7 +154,7 @@ const navigate=useNavigate()
 
           <button type="submit">Signup</button>
         </form>
-        <a href="/login">Login</a>
+      < Link to={"/login"} >Login </Link>
       </div>
     </div>
   );

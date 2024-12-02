@@ -4,10 +4,25 @@ import './Post.css';
 import { getDocs,collection } from 'firebase/firestore';
 import { FirebaseContext } from '../../store/firebaseContext';
 import ShimmerUI from '../../shimmer/homeProduct';
-
+import { Link } from 'react-router-dom';
+import { SearchContext } from '../../store/searchContext';
 function Posts() {
   const [products,setProducts]=useState([]);
+  const [backUpProducts,setbackUpProducts]=useState([])
   const {db}=useContext(FirebaseContext)
+  const {searchVal}=useContext(SearchContext)
+
+  useEffect(() => {
+    if (searchVal) {
+      const filterData = backUpProducts.filter((item) =>
+        item.productName.toLowerCase().includes(searchVal.toLowerCase())
+      );
+      setProducts(filterData);
+    } else {
+      setProducts(backUpProducts); 
+    }
+  }, [searchVal]);
+
   async function fetchData() {
     try {
 
@@ -17,8 +32,9 @@ function Posts() {
           id: doc.id
       }));
 
+     
+      setbackUpProducts(productData)
       setProducts(productData)
-      
 
     } catch (error) {
       console.error("Error fetching data:", error); // Log the error
@@ -39,25 +55,44 @@ function Posts() {
         <div className="heading">
           <span>Quick Menu</span>
           <span>View more</span>
+         
         </div>
         <div className="cards">
          { products.length===0 ? <ShimmerUI ui={true} />   :  <div
-            className="card"
+            style={{display:'flex',flex:"wrap"}}
           >
-            <div className="favorite">
-              <Heart></Heart>
-            </div>
-            <div className="image">
-              <img src="../../../Images/R15V3.jpg" alt="" />
-            </div>
-            <div className="content">
-              <p className="rate">&#x20B9; 250000</p>
-              <span className="kilometer">Two Wheeler</span>
-              <p className="name"> YAMAHA R15V3</p>
-            </div>
-            <div className="date">
-              <span>Tue May 04 2021</span>
-            </div>
+       {
+      
+      products.map((product)=>{
+    return(
+      
+     <Link key={product.id} style={{textDecoration:'none'}} to={`/product-details/${product.id}`}> 
+     
+      <div className="card">
+        <div className="favorite">
+          <Heart></Heart>
+        </div>
+        <div className="image">
+          <img src={product.imageUrl} alt="product img" />
+        </div>
+        <div className="content">
+          
+          <p className="name rate">{product.productName}</p>
+          <span className="kilometer">{product.Category}</span>
+
+          <p className="">&#x20B9; {product.Price}</p>
+          
+        </div>
+        <div className="date">
+          
+        </div>
+      </div>
+      </Link>
+   
+    )
+  })
+}
+
           </div>}
 
         </div>
@@ -68,17 +103,21 @@ function Posts() {
         </div>
 
         <div className="cards">
-        { (products.length===0) ? <ShimmerUI/> :  
+        { (backUpProducts.length===0) ? <ShimmerUI/> :  
+         
 
-  products.map((product)=>{
+
+backUpProducts.map((product)=>{
     return(
+      
+     <Link key={product.id} style={{textDecoration:'none'}} to={`/product-details/${product.id}`}> 
      
       <div className="card">
         <div className="favorite">
           <Heart></Heart>
         </div>
         <div className="image">
-          <img src="../../../Images/R15V3.jpg" alt="" />
+          <img src={product.imageUrl} alt="product img" />
         </div>
         <div className="content">
           
@@ -86,12 +125,13 @@ function Posts() {
           <span className="kilometer">{product.Category}</span>
 
           <p className="">&#x20B9; {product.Price}</p>
-          <p>{product.id}</p>
+          
         </div>
         <div className="date">
-          <span>10/5/2021</span>
+          <span>5/12/2024</span>
         </div>
       </div>
+      </Link>
    
     )
   })
